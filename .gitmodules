@@ -1,0 +1,6 @@
+[submodule "HEngine"]
+	path = HEngine
+	url = https://github.com/haythemdj2/HEngine
+[submodule "glm"]
+	path = glm
+	url = https://github.com/g-truc/glm

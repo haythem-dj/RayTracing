@@ -1,0 +1,7 @@
+entry.sublime-project
+entry.sublime-workspace
+
+*.pdf
+*.exe
+
+lib/
