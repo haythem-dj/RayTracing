@@ -5,3 +5,4 @@ entry.sublime-workspace
 *.exe
 
 lib/
+bin/

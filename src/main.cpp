@@ -1,5 +1,5 @@
-#include "HEngine/HEngine.h"
-#include "Renderer.h"
+#include "HEngine.h"
+#include "MyRenderer.h"
 
 class MainLayer: public HEngine::Layer
 {
