@@ -19,7 +19,7 @@ public:
 	const glm::mat4 &GetInverseView() const { return InverseView; }
 
 	const glm::vec3 &GetPosition() const { return Position; }
-	const glm::vec3 &GetDirection() const { return Direction; }
+	const glm::vec3 &GetForwardDirection() const { return ForwardDirection; }
 
 	const std::vector<glm::vec3> &GetRayDirections() const { return RayDirections; }
 
@@ -40,14 +40,14 @@ private:
 	float nClip = 0.1f;
 	float fClip = 100.0f;
 
-	glm::vec3 Position {0.0f}
+	glm::vec3 Position {0.0f};
 	glm::vec3 ForwardDirection {0.0f};
 
 	std::vector<glm::vec3> RayDirections;
 
 	float RotationSpeed = 0.3f;
 
-	glm::vec2 LastMousePosition = {0.0f};
+	glm::vec2 LastMousePosition {0.0f};
 
-	int width = 0 height = 0;
+	int width = 0, height = 0;
 };

@@ -2,6 +2,7 @@
 
 #include "Ray.h"
 #include "Scene.h"
+#include "Camera.h"
 
 class Renderer
 {
@@ -33,5 +34,6 @@ private:
 	int Width, Height;
 	uint32_t* pixels;
 
-	const Scene *ActiveScene;
+	const Scene* ActiveScene = nullptr;
+	const Camera* ActiveCamera = nullptr;
 };

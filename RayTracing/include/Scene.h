@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "glm.hpp"
+#include "glm/glm.hpp"
 
 struct Sphere
 {
