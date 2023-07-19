@@ -1,15 +1,15 @@
 #include "HEngine.h"
-#include "MyRenderer.h"
+#include "Renderer.h"
 
-class MainLayer: public HEngine::Layer
+class MainLayer: public HEngine::HLayer
 {
 public:
 	MainLayer()
 	{
-		Width = HEngine::Application::Get().GetViewportWidth();
-		Height = HEngine::Application::Get().GetViewportHeight();
+		Width = HEngine::HApplication::Get().GetViewportWidth();
+		Height = HEngine::HApplication::Get().GetViewportHeight();
 
-		pixels = HEngine::Application::Get().GetRenderer().GetPixels();
+		pixels = HEngine::HApplication::Get().GetRenderer().GetPixels();
 
 		renderer.Init(Width, Height, pixels);
 
@@ -37,7 +37,7 @@ public:
 	{
 		Width = width;
 		Height = height;
-		pixels = HEngine::Application::Get().GetRenderer().GetPixels();
+		pixels = HEngine::HApplication::Get().GetRenderer().GetPixels();
 	}
 
 	void OnUpdate(float dt) override
@@ -52,9 +52,9 @@ private:
 	Scene scene;
 };
 
-HEngine::Application* CreateApplication()
+HEngine::HApplication* CreateApplication()
 {
-	HEngine::Application* app = new HEngine::Application(500, 500);
+	HEngine::HApplication* app = new HEngine::HApplication(500, 500);
 	app->PushLayer(new MainLayer());
 	return app;
 }

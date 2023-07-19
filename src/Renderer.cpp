@@ -1,6 +1,7 @@
-#include "MYRenderer.h"
 #include <iostream>
 #include <algorithm>
+
+#include "Renderer.h"
 
 Renderer::Renderer()
 {
