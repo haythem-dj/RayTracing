@@ -6,3 +6,10 @@ entry.sublime-workspace
 
 lib/
 bin/
+.vs/
+x64/
+
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.sln

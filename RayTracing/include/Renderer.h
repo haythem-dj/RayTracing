@@ -12,7 +12,6 @@ public:
 	void Init(int width, int height, uint32_t* pixels);
 
 	glm::vec3 GetSkyColor(const Ray &ray);
-	
 
 	void Render(const Scene &scene);
 
@@ -21,11 +20,14 @@ private:
 	{
 		int ObjectIndex;
 		float HitDistance;
+		glm::vec3 WorldPosition;
 		glm::vec3 WorldNormal;
 	};
 
 	glm::vec3 PerPixel(glm::vec2 coords);
 	HitPayload TraceRay(const Ray &ray);
+	HitPayload ClosestSphere(const Ray &ray, float hitDistance, int sphereIndex);
+	HitPayload Miss(const Ray &ray);
 
 private:
 	int Width, Height;

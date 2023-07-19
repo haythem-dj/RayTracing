@@ -21,13 +21,13 @@ public:
 			scene.spheres.push_back(sphere);
 		}
 
-		// {
-		// 	Sphere sphere;
-		// 	sphere.Center = glm::vec3(0.5, 0.0, -4.0);
-		// 	sphere.Radius = 1.0;
-		// 	sphere.Color = glm::vec3(0.0, 1.0, 0.0);
-		// 	scene.spheres.push_back(sphere);
-		// }
+		{
+			Sphere sphere;
+			sphere.Center = glm::vec3(0.5, 0.0, -4.0);
+			sphere.Radius = 1.0;
+			sphere.Color = glm::vec3(0.0, 1.0, 0.0);
+			scene.spheres.push_back(sphere);
+		}
 	}
 
 	~MainLayer()
