@@ -5,12 +5,14 @@ class MainLayer: public HEngine::HLayer
 {
 public:
 	MainLayer()
+		:camera(45.0f, 0.1f, 100.0f)
 	{
 		Width = HEngine::HApplication::Get().GetViewportWidth();
 		Height = HEngine::HApplication::Get().GetViewportHeight();
 
 		pixels = HEngine::HApplication::Get().GetRenderer().GetPixels();
 
+		camera.OnResize(Width, Height);
 		renderer.Init(Width, Height, pixels);
 
 		{
@@ -23,7 +25,7 @@ public:
 
 		{
 			Sphere sphere;
-			sphere.Center = glm::vec3(0.5, 0.0, -4.0);
+			sphere.Center = glm::vec3(1.5, 0.0, -4.0);
 			sphere.Radius = 1.0;
 			sphere.Color = glm::vec3(0.0, 1.0, 0.0);
 			scene.spheres.push_back(sphere);
@@ -38,11 +40,13 @@ public:
 		Width = width;
 		Height = height;
 		pixels = HEngine::HApplication::Get().GetRenderer().GetPixels();
+		camera.OnResize(width, height);
 	}
 
 	void OnUpdate(float dt) override
 	{
-		renderer.Render(scene);
+		camera.OnUpdate(dt);
+		renderer.Render(camera, scene);
 	}
 
 private:
@@ -50,6 +54,7 @@ private:
 	uint32_t* pixels;
 	Renderer renderer;
 	Scene scene;
+	Camera camera;
 };
 
 HEngine::HApplication* CreateApplication()

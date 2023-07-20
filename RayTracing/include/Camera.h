@@ -13,8 +13,8 @@ public:
 	void OnUpdate(float dt);
 	void OnResize(int width, int height);
 
-	const glm::mat4 &GetPerspective() const { return Perspective; }
-	const glm::mat4 &GetInversePerspective() const { return InversePerspective; }
+	const glm::mat4 &GetPerspective() const { return Projection; }
+	const glm::mat4 &GetInversePerspective() const { return InverseProjection; }
 	const glm::mat4 &GetView() const { return View; }
 	const glm::mat4 &GetInverseView() const { return InverseView; }
 
@@ -26,14 +26,14 @@ public:
 	float GetRotaionSpeed() const { return RotationSpeed; }
 
 private:
-	void RecalculatePerspective();
+	void RecalculateProjection();
 	void RecalculateView();
 	void RecalculateRayDirections();
 
 private:
-	glm::mat4 Perspective {1.0f};
+	glm::mat4 Projection {1.0f};
 	glm::mat4 View {1.0f};
-	glm::mat4 InversePerspective {1.0f};
+	glm::mat4 InverseProjection {1.0f};
 	glm::mat4 InverseView {1.0f};
 
 	float FOV = 45.0;
@@ -42,6 +42,7 @@ private:
 
 	glm::vec3 Position {0.0f};
 	glm::vec3 ForwardDirection {0.0f};
+	glm::vec3 UpDirection {0.0f};
 
 	std::vector<glm::vec3> RayDirections;
 
