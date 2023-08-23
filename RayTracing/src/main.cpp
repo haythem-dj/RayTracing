@@ -25,9 +25,9 @@ public:
 
 		{
 			Sphere sphere;
-			sphere.Center = glm::vec3(1.5, 0.0, -4.0);
-			sphere.Radius = 1.0;
-			sphere.Color = glm::vec3(0.0, 1.0, 0.0);
+			sphere.Center = glm::vec3(1.0f, 0.0f, -4.0f);
+			sphere.Radius = 0.5f;
+			sphere.Color = glm::vec3(0.0f, 1.0f, 0.0f);
 			scene.spheres.push_back(sphere);
 		}
 	}
@@ -59,7 +59,7 @@ private:
 
 HEngine::HApplication* CreateApplication()
 {
-	HEngine::HApplication* app = new HEngine::HApplication(500, 500);
+	HEngine::HApplication* app = new HEngine::HApplication(720, 480);
 	app->PushLayer(new MainLayer());
 	return app;
 }

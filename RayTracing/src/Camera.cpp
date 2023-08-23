@@ -20,6 +20,8 @@ void Camera::OnUpdate(float dt)
 	float speed = 5.0f;
 	bool moved = false;
 
+	glm::vec3 RightDirection = glm::cross(ForwardDirection, UpDirection);
+
 	if (HEngine::HEvent::IsKeyDown(HEngine::KeyCode::Z))
 	{
 		Position += ForwardDirection * speed * dt;
@@ -28,6 +30,17 @@ void Camera::OnUpdate(float dt)
 	else if (HEngine::HEvent::IsKeyDown(HEngine::KeyCode::S))
 	{
 		Position -= ForwardDirection * speed * dt;
+		moved = true;
+	}
+
+	if (HEngine::HEvent::IsKeyDown(HEngine::KeyCode::D))
+	{
+		Position += RightDirection * speed * dt;
+		moved = true;
+	}
+	else if (HEngine::HEvent::IsKeyDown(HEngine::KeyCode::Q))
+	{
+		Position -= RightDirection * speed * dt;
 		moved = true;
 	}
 
@@ -73,7 +86,7 @@ void Camera::RecalculateRayDirections()
 			coord = coord * 2.0f - 1.0f;
 
 			glm::vec4 target = InverseProjection * glm::vec4(coord.x, coord.y, 1.0f, 1.0f);
-			glm::vec3 rayDirection = glm::vec3(InverseView * glm::vec4(glm::normalize(glm::vec3(target) / target.w), 0));
+			glm::vec3 rayDirection = glm::vec3(InverseView * glm::vec4(glm::normalize(glm::vec3(target) / target.w), 0.0f));
 			RayDirections[y * width + x] = rayDirection;
 		}
 	}

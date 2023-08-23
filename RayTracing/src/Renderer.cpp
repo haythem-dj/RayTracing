@@ -1,5 +1,6 @@
 #include <iostream>
 #include <algorithm>
+#include <chrono>
 
 #include "Renderer.h"
 
@@ -20,10 +21,10 @@ void Renderer::Init(int width, int height, uint32_t* p_pixels)
 
 void Renderer::Render(const Camera &camera, const Scene &scene)
 {
+	std::chrono::time_point<std::chrono::system_clock> start, end;
+	start = std::chrono::system_clock::now();
 	ActiveScene = &scene;
 	ActiveCamera = &camera;
-
-	
 	
 	for(int y = 0; y < Height; y++)
 	{
@@ -33,6 +34,8 @@ void Renderer::Render(const Camera &camera, const Scene &scene)
 			pixels[y*Width+x] = int(color.r*255) << 16 | int(color.g*255) << 8 | int(color.b*255);
 		}
 	}
+	end = std::chrono::system_clock::now();
+	std::cout << std::chrono::duration<double>(end - start).count()*1000.0f << "\n";
 }
 
 glm::vec3 Renderer::GetSkyColor(const Ray &ray)
@@ -52,7 +55,8 @@ glm::vec3 Renderer::PerPixel(int x, int y)
 	glm::vec3 color(0.0f);
 	float multiplier = 1.0f;
 
-	int bounces = 2;
+	int bounces = 5;
+	//int samples = 15;
 	for (int i = 0; i < bounces; i++)
 	{
 		Renderer::HitPayload payload = TraceRay(ray);
@@ -63,7 +67,7 @@ glm::vec3 Renderer::PerPixel(int x, int y)
 			break;
 		}
 		
-		glm::vec3 lightDir = glm::normalize(glm::vec3(-1.0, -1.0, -1.0));
+		glm::vec3 lightDir = glm::normalize(glm::vec3(0.0f, 0.0f, -3.0f));
 		float lightIndencity = glm::max(glm::dot(payload.WorldNormal, -lightDir), 0.0f);
 
 		const Sphere& sphere = ActiveScene->spheres[payload.ObjectIndex];
